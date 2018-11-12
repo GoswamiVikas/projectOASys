@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	{% block head %}
+	<title>Base</title>
+	{%  endblock %}
+</head>
+<body>
+		<!-- Static navbar -->
+	<br>
+	<div class="container center-div">
+	    <nav class="navbar navbar-default">
+	      <div class="container-fluid">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="{% url 'accounts:home' %}">OASys</a>
+	        </div>
+	        <div id="navbar" class="navbar-collapse collapse">
+
+	        {%  if user.is_authenticated %}
+	          <ul class="nav navbar-nav navbar-left">
+	          	<li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+	            <li><a href="{% url 'accounts:logout' %}">Lgout</a></li>
+	            <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
+	            <li><a href="{% url 'accounts:home' %}">Home</a></li>
+	          </ul>
+	        {% else %} 
+	          <ul class="nav navbar-nav navbar-right">
+	          	<li><a href="{% url 'accounts:login' %}">Login</a></li>
+	            <li><a href="{% url 'accounts:register' %}">Register</a></li>
+	          </ul>
+
+	        {% endif %}
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </nav>
+    </div>
+	{% block body %}
+	<title>Base</title>
+	{%  endblock %}
+</body>
+</html>
