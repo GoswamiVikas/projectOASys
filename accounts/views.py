@@ -19,6 +19,8 @@ def register(request):
 		if form.is_valid():
 			form.save()
 			return redirect('/accounts/profile')
+		else:
+			return render(request,'accounts/register.html')
 	else:
 		form = RegisterationForm()
 		args = {'form':form}

@@ -38,3 +38,4 @@ def create_profile(sender, **kwargs):
 		student_profile = StudentProfile.objects.create(user=kwargs['instance'])
 
 post_save.connect(create_profile, sender=CUser)
+
