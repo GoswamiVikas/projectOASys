@@ -40,18 +40,20 @@ class Teaches(models.Model):
 		return self.cid.name
 
 class Assignment(models.Model):
-	subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
 	teacher_id = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default='')
+	subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
 	asmt_no = models.PositiveSmallIntegerField()
 	announcement_date = models.DateField()
 	due_datetime = models.DateTimeField()
 	asmt_group = models.PositiveSmallIntegerField()
+	asmt_file = models.FileField(upload_to='asmt/')
 	
 	class Meta:
-		unique_together = (('subject','asmt_no'),)
+		unique_together = (('subject','asmt_no',),)
 
 	def __str__(self):
-		return self.subject.subj_id + "_" + str(self.asmt_no) + " " + str(self.announcement_date)
+		return self.subject.subj_id + "_" + str(self.asmt_no) +"_"+ str(self.announcement_date.year)
+
 
 class Mark(models.Model):
 	asmt = models.ForeignKey(Assignment, on_delete=models.CASCADE)
@@ -59,7 +61,7 @@ class Mark(models.Model):
 	marks = models.PositiveSmallIntegerField()
 
 class Submission(models.Model):
-	asmt = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 	student_id = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
+	asmt = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 	submission_datetime = models.DateTimeField()
-	
+	asmt_solution_file = models.FileField(upload_to='asmt_submission/')

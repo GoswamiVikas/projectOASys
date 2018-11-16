@@ -5,3 +5,5 @@ from students import models
 admin.site.register(models.Subjects)
 admin.site.register(models.Teaches)
 admin.site.register(models.Assignment)
+admin.site.register(models.Mark)
+admin.site.register(models.Submission)
