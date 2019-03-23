@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title>Assignments</title>
+	{% endblock %}
+</head>
+<body>
+	{% block body %}
+
+		{% if user.role == 'instructor' %}
+
+		<div class="container center-div">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Roll No</th>
+						<th scope="col">Name</th>
+						<th scope="col">Solution File</th>
+						<th scope="col">Marks</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for s in submissions %}
+					<tr>
+						<th scope="row">1</th>
+						<td>{{s.student_id.first_name}}</td>
+						<td><a href="{{ s.asmt_solution_file.url  }}">{{ s.asmt_solution_file }}</a></td>
+						<td>
+							<form>
+								<div class="form-row align-items-center">
+									<div class="col-sm-3 my-1">
+										<input type="number" class="form-control" id="inlineFormInputName" placeholder="Marks">
+									</div>
+									<div class="col-auto my-1">
+										<button type="submit" class="btn btn-primary">Mark</button>
+									</div>
+								</div>	
+							</form>
+						</td>
+					</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+		</div>
+
+
+		{%endif%}
+
+
+	{% endblock %}
+</body>
+
+
+<!-- <form>
+  <div class="form-row align-items-center">
+    <div class="col-sm-1 my-1">
+      <input type="text" class="form-control" id="inlineFormInputName" placeholder="Marks">
+    </div>
+    <div class="col-auto my-1">
+      <button type="submit" class="btn btn-primary">Mark</button>
+    </div>
+  </div>
+</form>
+
+
+				<ul class="list-group">
+					{% for s in submissions %}
+					<a href="#" class="list-group-item list-group-item-action">{{ s.student_id.rollno }} &nbsp; {{s.student_id.first_name}} &nbsp;</a><br>
+					{% endfor %}
+				</ul> -->
+<!-- <embed src="{{ s.asmt_solution_file.url }}" width="800px" height="2100px">Solution File</embed> -->

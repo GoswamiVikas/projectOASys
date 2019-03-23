@@ -27,19 +27,28 @@
 
 	        	{% if user.role == 'student' %}
 		          <ul class="nav navbar-nav navbar-left">
+		          	<li><a href="{% url 'students:update_profile' %}">Update Info</a></li>
+		          	<li><a href="{% url 'students:my_subjects' %}"> My Subjects </a></li>
 		          	<li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
-		            <li><a href="{% url 'accounts:logout' %}">Lgout</a></li>
 		            <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
-		            <li><a href="{% url 'home' %}">Home</a></li>
+		            <li><a href="{% url 'accounts:logout' %}">Lgout</a></li>
 		          </ul>
 		        {% endif %}
 		        {% if user.role == 'instructor' %}
-		          <ul class="nav navbar-nav navbar-left">
-		          	<!-- <li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li> -->
-		            <li><a href="{% url 'accounts:logout' %}">Lgout</a></li>
-		            <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
-		            <li><a href="{% url 'home' %}">Home</a></li>	
+		        <ul class="nav navbar-nav navbar-left">
+		        	<li><a href="{% url 'instructors:view_asmts' %}">View Assignments</a></li>
+		        	<li><a href="{% url 'instructors:give_asmt' %}">Give Assignment</a></li>
+		        	<li><a href="{% url 'instructors:add_subject' %}">Add Subjects</a></li>
+		        	<li><a href="{% url 'instructors:my_subjects' %}">My Subjects </a></li>
+		        	<li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+		        	<li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
+		        	<li><a href="{% url 'accounts:logout' %}">Lgout</a></li>	
+		        </ul>
 		        {% endif %}
+
+		        <ul class="nav navbar-nav navbar-right">
+		          <li><a href="{% url 'home' %}">{{ user.get_full_name }}</a></li>
+		        </ul>
 
 	        {% else %} 
 	          <ul class="nav navbar-nav navbar-right">

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title>Assignments</title>
+	{% endblock %}
+</head>
+<body>
+	{% block body %}
+
+		{% if user.role == 'instructor' %}
+
+			<div class="container center-div">
+				<ul class="list-group">
+					{% for asmt in asmts %}
+					<a href="{% url 'instructors:view_class_asmts' asmt_name=asmt.asmt_name %}" class="list-group-item list-group-item-action">{{ asmt.subject }} -  {{asmt.asmt_name}}</a>
+					{% endfor %}
+				</ul>
+			</div>
+
+
+		{%endif%}
+
+
+	{% endblock %}
+</body>
+<!-- 
+<a href="{% url 'instructors:view_class_asmts' asmt_sub=asmt.subject.subj_id asmt_name=asmt.asmt_name asmt_no=asmt.asmt_no %}" class="list-group-item list-group-item-action">{{ asmt.subject }} {{asmt.asmt_name}}</a> -->
+<!-- asmt_sub=asmt.subject.subj_id  -->

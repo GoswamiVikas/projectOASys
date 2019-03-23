@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'students',
+    'instructors',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'OASys.urls'
+
 
 TEMPLATES = [
     {
@@ -115,6 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
+
+LOGIN_REDIRECT_URL = '/accounts'
 
 LANGUAGE_CODE = 'en-us'
 

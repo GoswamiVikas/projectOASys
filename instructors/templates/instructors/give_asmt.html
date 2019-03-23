@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title> Give Assignment</title>
+	{{form.media}}
+	{% endblock %}
+</head>
+
+<body>
+	{% block body %}
+		<form method="post" enctype="multipart/form-data">
+			<div class="container">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit">Announce</button>
+			</div>
+		</form> 
+	{% endblock %}
+</body>
+</html>

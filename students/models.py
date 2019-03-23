@@ -43,9 +43,10 @@ class Teaches(models.Model):
 class Assignment(models.Model):
 	teacher_id = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default='')
 	subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)
+	asmt_name = models.CharField(default='',max_length=50)
 	asmt_no = models.PositiveSmallIntegerField()
 	announcement_date = models.DateField()
-	due_datetime = models.DateTimeField()
+	due_date = models.DateField()
 	asmt_group = models.PositiveSmallIntegerField()
 	asmt_file = models.FileField(upload_to='asmt/')
 	
@@ -53,7 +54,7 @@ class Assignment(models.Model):
 		unique_together = (('subject','asmt_no',),)
 
 	def __str__(self):
-		return self.subject.subj_id + "_" + str(self.asmt_no) +"_"+ str(self.announcement_date.year)
+		return self.subject.subj_id + "_" + self.asmt_name 
 
 
 class Mark(models.Model):
@@ -66,6 +67,9 @@ class Submission(models.Model):
 	asmt = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 	submission_datetime = models.DateTimeField()
 	asmt_solution_file = models.FileField(upload_to='asmt_submission/')
+	
+	def __str__(self):
+		return self.student_id.first_name + "_" + self.asmt.asmt_name 
 
 class StudentProfile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

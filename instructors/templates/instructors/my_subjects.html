@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+<h1>Home</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title>My Courses</title>
+	{% endblock %}
+</head>
+<body>
+	{% block body %}
+
+		{% if user.role == 'instructor' %}
+
+			{% for t in teach %}
+			<div class="container center-div">
+				<br>
+				<button type="button" class="btn btn-outline-secondary btn-lg">{{ t.cid }}</button>
+			</div>
+
+
+			{% endfor %}
+
+		{%endif%}
+
+
+	{% endblock %}
+</body>

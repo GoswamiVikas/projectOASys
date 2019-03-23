@@ -11,14 +11,18 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
-	return render(request, 'accounts/home.html')
+	if request.user:
+		args = {'user': request.user}
+		return render(request, 'accounts/home.html', args)
+	else:
+		return render(request, 'accounts/home.html')
 
 def register(request):
 	if request.method == 'POST':
 		form = RegisterationForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('/accounts/profile')
+			return redirect('/accounts/home')
 		else:
 			return render(request,'accounts/register.html')
 	else:
@@ -34,14 +38,16 @@ def view_profile(request):
 @login_required
 def edit_profile(request):
 	if request.method == 'POST':
-		form = StudentProfileForm(request.POST, instance=request.user)
+		form = EditProfileForm(request.POST, instance=request.user)
 
 		if  form.is_valid():
 			form.save()
-			return redirect('/accounts/profile')
+			return redirect('/accounts')
+		else:
+			return redirec('/accounts/edit_profile')
 
 	else:
-		form = StudentProfileForm(instance=request.user)
+		form = EditProfileForm(instance=request.user)
 		args = {'form': form, 'user':request.user}
 		return render(request, 'accounts/edit_profile.html', args)
 

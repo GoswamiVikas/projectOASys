@@ -1,9 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, AuthenticationForm, UserCreationForm
-# from cuser.forms import AuthenticationForm, UserCreationForm
 from OASys import settings
-# from cuser.models import CUser
 from students.models import StudentProfile
 from accounts.models import MyUser
 from django.forms import ModelForm
